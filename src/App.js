@@ -8,11 +8,11 @@ const ciphers = ['Ceasar', 'Transposition', 'Affine', 'Vigenere', 'Hill']
 
   return (
     <div className="App">
-      <h1>Đây là trang chủ có 4 nút</h1>
+      <h2>Thuật toán mã hóa cơ bản</h2>
       <div className='content-section'>
       <div className='lef-col'>
       {ciphers.map((cipher, index)=> (
-        <NavLink key={index} to={`/ciphers/${cipher}`}>
+        <NavLink key={index} to={`/ciphers/${cipher}`} style={{textDecoration:'none'}}>
         <h4>{cipher}</h4>
       </NavLink>
       )) 

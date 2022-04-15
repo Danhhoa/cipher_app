@@ -90,29 +90,56 @@ const Transposition = () => {
 
 
     return (
+        // <div className="right-col">
+        //     <div className="container">
+        //         <div className="plain__content"> Plain text
+        //             <textarea className='text' type="text" onChange={e => setPlainText(e.target.value)} value={plainText}>
+        //                 {plainText}
+        //             </textarea>
+        //         </div>
+        //         <div className="convert__content transposition">
+        //             <div className="field field-number field--first field-transposition">
+        //                 <label className='label'>KEY</label>
+        //                 <div className="field-number__field">
+        //                     <button className='field-number__down' onClick={() => setKey(key => key - 1)}>-</button>
+        //                     <div className="field-number__value">{key}</div>
+        //                     <button className='field-number__up' onClick={() => setKey(key => key + 1)}>+</button>
+        //                 </div>
+        //             </div>   
+        //             <div className="btn-container btn-transposition">
+        //                     <button onClick={() => setCipherText(encode(plainText, key))}>Encrypt</button>
+        //                     <button onClick={() => setPlainText(decode(cipherText, key))}>Decrypt</button>
+        //             </div>
+        //         </div>
+        //         <div className="cipher__content"> Cipher text
+        //             <textarea className='text' type="text" onChange={e => setCipherText(e.target.value)} value={cipherText}>
+        //                 {cipherText}
+        //             </textarea>
+        //         </div>
+        //     </div>
+        // </div>
         <div className="right-col">
-            <h1> thuật toán Rail Fence - Transposition</h1>
             <div className="container">
-                <div className="plain__content">
+                <div className="col-3"> Plain text
                     <textarea className='text' type="text" onChange={e => setPlainText(e.target.value)} value={plainText}>
                         {plainText}
                     </textarea>
                 </div>
-                <div className="convert__content transposition">
-                    <div className="field field-number field--first field-transposition">
+                <div className="col-3">
+                    {/* <div className="field field-number field--first field-transposition"> */}
                         <label className='label'>KEY</label>
                         <div className="field-number__field">
                             <button className='field-number__down' onClick={() => setKey(key => key - 1)}>-</button>
-                            <div className="field-number__value">{key}</div>
+                            <div className="key_shift">{key}</div>
                             <button className='field-number__up' onClick={() => setKey(key => key + 1)}>+</button>
                         </div>
-                    </div>   
-                    <div className="btn-container btn-transposition">
-                            <button onClick={() => setCipherText(encode(plainText, key))}>Encrypt</button>
-                            <button onClick={() => setPlainText(decode(cipherText, key))}>Decrypt</button>
+                    {/* </div>    */}
+                    <div className="btn-container">
+                            <button className='btn-encrypt' onClick={() => setCipherText(encode(plainText, key))}>Encrypt</button>
+                            <button className='btn-decrypt' onClick={() => setPlainText(decode(cipherText, key))}>Decrypt</button>
                     </div>
                 </div>
-                <div className="cipher__content">
+                <div className="col-3"> Cipher text
                     <textarea className='text' type="text" onChange={e => setCipherText(e.target.value)} value={cipherText}>
                         {cipherText}
                     </textarea>

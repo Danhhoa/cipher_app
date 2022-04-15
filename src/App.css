@@ -1,6 +1,7 @@
 .App {
-  /* display: flex;
-  flex-flow: column wrap; */
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
 }
 body {
   font-size: 16px;
@@ -19,7 +20,7 @@ textarea {
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
-  width: auto;
+  width: 1100px;
   height: auto;
   padding: 0.5rem calc((100vw - 1200px) / 2);
 }
@@ -36,14 +37,15 @@ textarea {
 .right-col {
   width: 85%;
   padding:8px 16px ;
-  height: 500px;
   float: right;
   border: 2px solid;
+  align-items: center;
+  
 }
 
 .container {
   display: flex;
-  flex-flow: row wrap;
+  flex-flow: row nowrap;
   justify-content: space-around;
   align-items: center;
 }
@@ -78,6 +80,8 @@ textarea {
   position: relative;
   flex-direction: row;
   width: 100%;
+  align-items: center;
+  justify-content: space-around;
 }
 
 .field-number__down {
@@ -113,7 +117,6 @@ textarea {
 .btn-container {
   display: flex;
   position: relative;
-  margin-left: 80px;
   width: 100%;
   height: 57px;
   justify-content: center;
@@ -142,11 +145,12 @@ textarea {
 }
 
 .label-key {
-  align-items: center;
+  width: 100%;
+  text-align: center;
   padding-top: 13px;
 }
 
-#ceaser_shift {
+.key_shift {
   border: 2px solid black;
   width: 124px;
   height: 39px;

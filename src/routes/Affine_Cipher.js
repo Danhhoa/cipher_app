@@ -69,16 +69,15 @@ const Affine = () => {
 
     return (
         <div className="right-col">
-            <h1> thuật toán Affine</h1>
             <div className="container">
-                <div className="plain__content">
-                <label className='label-title'>Encrypt</label>
+                <div className="col-3">
+                <label className='label-title'>Plain text</label>
                     <textarea className='text' type="text" onChange={e => setPlainText(e.target.value)} value={plainText}>
                         {plainText}
                     </textarea>
                 </div>
-                <div className="convert__content">
-                    <div className="field field-number field--first">
+                <div className="col-3">
+                    <div className="field field-number">
                         <label className='label'>slope / a</label>
                         <div className="field-number__field">
                             <button className='field-number__down' onClick={() => setKeyA(keyA => keyA - 2 === 13 ? keyA - 4 : keyA - 2)}>-</button>
@@ -87,7 +86,7 @@ const Affine = () => {
                         </div>
                     </div>
                     
-                    <div className="field field-number field--second">
+                    <div className="field field-number">
                         <label className='label'>intercept / b</label>
                         <div className="field-number__field">
                             <button className='field-number__down' onClick={() => setKeyB(keyB => keyB - 1)}>-</button>
@@ -97,12 +96,12 @@ const Affine = () => {
                     </div>
                     
                     <div className="btn-container">
-                            <button onClick={() => setCipherText(encode(plainText, {a:keyA, b:keyB}))}>Encrypt</button>
-                            <button onClick={() => setPlainText(decode(cipherText, {a:keyA, b:keyB}))}>Decrypt</button>
+                            <button className='btn-encrypt' onClick={() => setCipherText(encode(plainText, {a:keyA, b:keyB}))}>Encrypt</button>
+                            <button className='btn -decrypt' onClick={() => setPlainText(decode(cipherText, {a:keyA, b:keyB}))}>Decrypt</button>
                     </div>
                 </div>
-                <div className="cipher__content">
-                    <label className='label-title'>Decrypt</label>
+                <div className="col-3">
+                    <label className='label-title'>Cipher text</label>
                     <textarea className='text' type="text" onChange={e => setCipherText(e.target.value)} value={cipherText}>
                         {cipherText}
                     </textarea>

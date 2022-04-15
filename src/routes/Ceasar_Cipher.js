@@ -61,7 +61,7 @@ const Ceasar = () => {
 
   return (
     <div className="right-col">
-      <h1> thuật toán Ceasar</h1>
+
 
       <div className="container">
         <div className="col-3">
@@ -77,7 +77,7 @@ const Ceasar = () => {
         </div>
 
         <div className="col-3">
-          <label className="label-key" htmlFor="ceaser_shift">
+          <label className="label-key label" htmlFor="ceaser_shift">
             Shift
           </label>
           <button
@@ -89,7 +89,7 @@ const Ceasar = () => {
             -
           </button>
           <div
-            id="ceaser_shift"
+            className="key_shift"
             onChange={(e) => setShift(e.target.value)}
             value={shift}
           >
