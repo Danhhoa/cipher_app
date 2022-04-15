@@ -124,11 +124,11 @@ const Vigenere = () => {
         </div>
 
         <div className="col-3">
-          <label className="label-key" htmlFor="vigenere_key">
+          <label className="label-key label" htmlFor="vigenere_key">
             Key
           </label>
           <textarea
-            id="vigenere_key"
+            className=" key_shift"
             onChange={(e) => setKeyWord(e.target.value)}
             value={keyWord}
           >

@@ -337,7 +337,7 @@ const Hill = () => {
                     </textarea>
                 </div>
                 <div className="col-3">
-                    <div className="field field-number field--first">
+                    <div className="field field-number">
                         <label className='label'>KEY</label>
                         <div className="field-number__field">
                             <input 
