@@ -18,29 +18,59 @@ function cipherText(str, key) {
   let cipher_text = "";
 
   for (let i = 0; i < str.length; i++) {
+    if (str[i] === " ") {
+      cipher_text += " ";
+      continue;
+    }
     // converting in range 0-25
-    let x = (str[i].charCodeAt(0) + key[i].charCodeAt(0)) % 26;
+    let charCode = str[i].charCodeAt(0);
+    let x, upperCode;
+    if (charCode >= 97 && charCode <= 122) {
+      upperCode = str[i].toUpperCase().charCodeAt(0);
+      x = (upperCode + key[i].charCodeAt(0)) % 26;
 
-    // convert into alphabets(ASCII)
-    x += "A".charCodeAt(0);
-
-    cipher_text += String.fromCharCode(x);
+      // convert into alphabets(ASCII)
+      x += "A".charCodeAt(0);
+      cipher_text += String.fromCharCode(x).toLowerCase();
+    } else {
+      // convert into alphabets(ASCII)
+      x = (charCode + key[i].charCodeAt(0)) % 26;
+      x += "A".charCodeAt(0);
+      cipher_text += String.fromCharCode(x);
+    }
   }
   return cipher_text;
 }
 
 // This function decrypts the encrypted text
 // and returns the original text
-function originalText(cipher_text, key) {
+function originalText(cipherText, key) {
   let orig_text = "";
 
-  for (let i = 0; i < cipher_text.length; i++) {
-    // converting in range 0-25
-    let x = (cipher_text[i].charCodeAt(0) - key[i].charCodeAt(0) + 26) % 26;
+  for (let i = 0; i < cipherText.length; i++) {
+    let charCode = cipherText[i].charCodeAt(0);
+    // let charKey = key[i].charCodeAt(0);
+    let x, upperCode;
 
-    // convert into alphabets(ASCII)
-    x += "A".charCodeAt(0);
-    orig_text += String.fromCharCode(x);
+    if (cipherText[i] === " ") {
+      orig_text += " ";
+      continue;
+    }
+
+    if (charCode >= 97 && charCode <= 122) {
+      upperCode = cipherText[i].toUpperCase().charCodeAt(0);
+      x = (upperCode - key[i].charCodeAt(0) + 26) % 26;
+      // convert into alphabets(ASCII)
+      x += "A".charCodeAt(0);
+      orig_text += String.fromCharCode(x).toLowerCase();
+    } else {
+      x = (charCode - key[i].charCodeAt(0) + 26) % 26;
+      // convert into alphabets(ASCII)
+      x += "A".charCodeAt(0);
+      orig_text += String.fromCharCode(x);
+    }
+
+    // converting in range 0-25
   }
   return orig_text;
 }
@@ -59,50 +89,87 @@ function LowerToUpper(s) {
 }
 
 // Driver code
-let str = "GEEKSFORGEEKS";
-let keyword = "AYUSH";
 
-let key = generateKey(str, keyword);
-
-let cipher_text = cipherText(str, key);
-
-console.log("Ciphertext : " + cipher_text);
-
-console.log("Original/Decrypted Text : " + originalText(cipher_text, key));
 const Vigenere = () => {
   const [plainText, setPlainText] = useState("");
   const [cipher, setCipher] = useState("");
   const [keyWord, setKeyWord] = useState("");
-  // const [alphabet, setAlphabet] = useState('')
 
-  function encrypt() {
-    setPlainText(document.getElementById("plainTextBox").value);
-    setKeyWord(document.getElementById("vigenere_key").value);
-    // setAlphabet(document.getElementById('vigenere_alphabet').value)
-
+  function Encrypt(plainText, keyWord) {
     let key = generateKey(plainText, keyWord);
+    let results = cipherText(plainText, key);
+    return results;
+  }
 
-    let cipher_text = cipherText(plainText, key);
-    document.getElementById('cipherTextBox').value = cipher_text
+  function Decrypt(cipherText, keyWord) {
+    console.log("decrypt: " + cipherText, typeof cipherText);
+    let key = generateKey(cipherText, keyWord);
+    let results = originalText(cipherText, key);
+    return results;
   }
 
   return (
     <div className="right-col">
-      <label htmlFor="plainTextBox">Plain Text</label>
-      <input id="plainTextBox"></input>
+      <div className="container">
+        <div className="col-3">
+          <label htmlFor="vigenere-plain-text">Plain Text</label>
+          <textarea
+            className="text"
+            id="vigenere-plain-text"
+            onChange={(e) => setPlainText(e.target.value)}
+            value={plainText}
+          >
+            {plainText}
+          </textarea>
+        </div>
 
-      <label htmlFor="vigenere_alphabet">alphabet</label>
-      <input id="vigenere_alphabet"></input>
+        <div className="col-3">
+          <label className="label-key" htmlFor="vigenere_key">
+            Key
+          </label>
+          <textarea
+            id="vigenere_key"
+            onChange={(e) => setKeyWord(e.target.value)}
+            value={keyWord}
+          >
+            {keyWord}
+          </textarea>
 
-      <label htmlFor="vigenere_key">Key</label>
-      <input id="vigenere_key"></input>
+          <div className="btn-container">
+            <button
+              className="btn-encrypt"
+              onClick={() => {
+                setCipher(Encrypt(plainText, keyWord));
+              }}
+            >
+              Encrypt
+            </button>
+            <button
+              className="btn-decrypt"
+              onClick={() => {
+                setPlainText(Decrypt(cipher, keyWord));
+              }}
+            >
+              Decrypt
+            </button>
+          </div>
+        </div>
 
-      <label htmlFor="cipherTextBox">Cipher Text</label>
-      <input id="cipherTextBox"></input>
-
-      <button id="btn_vigenere_cipher" onClick={encrypt}>
-        mã hóa
-      </button>
+        <div className="col-3">
+          <label htmlFor="vigenere-cipher-text">Cipher Text</label>
+          <textarea
+            className="text"
+            id="vigenere-cipher-text"
+            onChange={(e) => {
+              setCipher(e.target.value);
+              // setPlainText(Decrypt(cipher, keyWord))
+            }}
+            value={cipher}
+          >
+            {cipher}
+          </textarea>
+        </div>
+      </div>
     </div>
   );
 };
