@@ -11,7 +11,7 @@ import Vigenere from "./routes/Vigenere_Cipher"
 import Hill from "./routes/Hill_Cipher"
 
 ReactDOM.render(
-    <BrowserRouter>
+    <BrowserRouter basename='/cipher_app'>
         <Routes>
         <Route path='/' element={<App/>}>
           <Route path="/ciphers/Ceasar" element={<Ceasar />} ></Route>
