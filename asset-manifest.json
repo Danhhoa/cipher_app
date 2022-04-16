@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/cipher_app/static/css/main.b3d011a2.css",
+    "main.js": "/cipher_app/static/js/main.d8ee1437.js",
+    "index.html": "/cipher_app/index.html",
+    "main.b3d011a2.css.map": "/cipher_app/static/css/main.b3d011a2.css.map",
+    "main.d8ee1437.js.map": "/cipher_app/static/js/main.d8ee1437.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.b3d011a2.css",
+    "static/js/main.d8ee1437.js"
+  ]
+}
