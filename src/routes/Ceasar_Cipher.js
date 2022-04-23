@@ -61,8 +61,6 @@ const Ceasar = () => {
 
   return (
     <div className="right-col">
-
-
       <div className="container">
         <div className="col-3">
           <label htmlFor="vigenere-plain-text">Plain Text</label>

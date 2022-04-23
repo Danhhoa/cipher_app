@@ -3,7 +3,7 @@ import { NavLink, Outlet, Link } from "react-router-dom";
 
 
 function App() {
-const ciphers = ['Ceasar', 'Transposition', 'Affine', 'Vigenere', 'Hill']
+const ciphers = ['Ceasar', 'Transposition', 'Affine', 'Vigenere', 'Hill', 'RSA']
 
 
   return (
