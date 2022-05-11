@@ -194,3 +194,20 @@ textarea {
 .btn-hill {
   left: 25px;
 }
+
+.text-2 {
+  width: 300px;
+  height: 200px;
+}
+
+.rsa-key-pair {
+  width: auto;
+  height: 50px;
+  margin: 30px;
+}
+
+.warning-empty {
+  color: red;
+  font-size: 16px;
+  font-weight: 500;
+}

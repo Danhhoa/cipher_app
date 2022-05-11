@@ -1,5 +1,5 @@
 import { useState } from "react";
-
+import IsEmpty from "../utils/IsEmpty";
 function generateKey(str, key) {
   key = key.split("");
   if (str.length == key.length) return key.join("");
@@ -94,6 +94,9 @@ const Vigenere = () => {
   const [plainText, setPlainText] = useState("");
   const [cipher, setCipher] = useState("");
   const [keyWord, setKeyWord] = useState("");
+  const [showWarningEn, setShowWarningEn] = useState(false)
+  const [showWarningDe, setShowWarningDe] = useState(false)
+
 
   function Encrypt(plainText, keyWord) {
     let key = generateKey(plainText, keyWord);
@@ -121,6 +124,9 @@ const Vigenere = () => {
           >
             {plainText}
           </textarea>
+          {
+            showWarningEn ? <label className="warning-empty" >Hãy nhập dữ liệu cần mã hóa</label> : ""
+          }
         </div>
 
         <div className="col-3">
@@ -139,7 +145,7 @@ const Vigenere = () => {
             <button
               className="btn-encrypt"
               onClick={() => {
-                setCipher(Encrypt(plainText, keyWord));
+                IsEmpty(plainText) ? setShowWarningEn(true) : setShowWarningEn(false); setCipher(Encrypt(plainText, keyWord));
               }}
             >
               Encrypt
@@ -147,7 +153,7 @@ const Vigenere = () => {
             <button
               className="btn-decrypt"
               onClick={() => {
-                setPlainText(Decrypt(cipher, keyWord));
+                IsEmpty(cipher) ? setShowWarningDe(true) : setShowWarningDe(false) ;setPlainText(Decrypt(cipher, keyWord));
               }}
             >
               Decrypt
@@ -168,6 +174,9 @@ const Vigenere = () => {
           >
             {cipher}
           </textarea>
+          {
+            showWarningDe ? <label className="warning-empty" >Hãy nhập dữ liệu cần giải mã</label> : ""
+          }
         </div>
       </div>
     </div>

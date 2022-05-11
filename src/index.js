@@ -10,6 +10,7 @@ import Affine from "./routes/Affine_Cipher"
 import Vigenere from "./routes/Vigenere_Cipher"
 import Hill from "./routes/Hill_Cipher"
 import RSA from "./routes/RSA_cipher"
+import Elgamal from "./routes/Elgamal"
 
 ReactDOM.render(
     // <HashRouter basename='/cipher_app/'>
@@ -35,6 +36,7 @@ ReactDOM.render(
       <Route path='/ciphers/Vigenere' element={<Vigenere />} ></Route>
       <Route path='/ciphers/Hill' element={<Hill /> } ></Route>
       <Route path='/ciphers/RSA' element={<RSA /> } ></Route>
+      <Route path='/ciphers/Elgamal' element={<Elgamal />}> </Route>
     </Route>
     </Routes>
 

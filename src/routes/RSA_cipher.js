@@ -2,8 +2,7 @@ import { JSEncrypt } from "jsencrypt";
 import { useState } from "react";
 
 const RSA = () => {
-  function Encrypt(text) {
-    const encrypt = new JSEncrypt();
+  function generateRsaKeyPair() {
     // Generate a RSA key pair using the `JSEncrypt` library.
     const crypt = new JSEncrypt({ default_key_size: 2048 });
     const PublicPrivateKey = {
@@ -13,7 +12,20 @@ const RSA = () => {
     const publicKey = PublicPrivateKey.PublicKey;
     setPubKey(publicKey);
     const privateKey = PublicPrivateKey.PrivateKey;
-    setPriKey(privateKey)
+    setPriKey(privateKey);
+  }
+  function Encrypt(text, publicKey) {
+    const encrypt = new JSEncrypt();
+    // // Generate a RSA key pair using the `JSEncrypt` library.
+    // const crypt = new JSEncrypt({ default_key_size: 2048 });
+    // const PublicPrivateKey = {
+    //   PublicKey: crypt.getPublicKey(),
+    //   PrivateKey: crypt.getPrivateKey(),
+    // };
+    // const publicKey = PublicPrivateKey.PublicKey;
+    // setPubKey(publicKey);
+    // const privateKey = PublicPrivateKey.PrivateKey;
+    // setPriKey(privateKey)
 
     // Assign our encryptor to utilize the public key.
     encrypt.setPublicKey(publicKey);
@@ -37,30 +49,54 @@ const RSA = () => {
   return (
     <div className="right-col">
       <div className="container">
+        <button
+          className="rsa-key-pair"
+          onClick={() => {
+            generateRsaKeyPair();
+          }}
+        >
+          Generate RSA key pair
+        </button>
         <div className="col-3">
+        <label htmlFor="publicKey">Public Key</label>
+          <textarea
+            className="text-2"
+            id="publicKey"
+            onChange={(e) => setPubKey(e.target.value)}
+            value={pubKey}
+          >
+            {pubKey}
+          </textarea>
           <label htmlFor="vigenere-plain-text">Plain Text</label>
           <textarea
-            className="text"
+            className="text-2"
             id="vigenere-plain-text"
             onChange={(e) => setPlainText(e.target.value)}
             value={plainText}
           >
             {plainText}
           </textarea>
-          <label htmlFor="publicKey">Public Key</label>
-          <textarea className="text" id="publicKey" onChange={(e) => setPubKey(e.target.value)} value={pubKey}>{pubKey}</textarea>
-         
+      
+
+          <button
+            className="btn-encrypt"
+            onClick={() => {
+              setCipherText(Encrypt(plainText, pubKey));
+            }}
+          >
+            Encrypt
+          </button>
         </div>
-        <div className="col-3">
-        <div className="btn-container">
+        {/* <div className="col-3">
+          <div className="btn-container">
             <button className="btn-encrypt"
               onClick={() => {
                 setCipherText(Encrypt(plainText));
               }}
             >
               Encrypt
-            </button>
-            <button className="btn-decrypt"
+            </button> 
+             <button className="btn-decrypt"
               onClick={() => {
                 setPlainText(Decrypt(cipherText, priKey));
               }}
@@ -68,19 +104,35 @@ const RSA = () => {
               Decrypt
             </button>
           </div>
-        </div>
+        </div> */}
         <div className="col-3">
-        <label htmlFor="vigenere-cipher-text">Cipher Text</label>
+        <label htmlFor="privateKey">Private Key</label>
           <textarea
-            className="text"
+            className="text-2"
+            id="privateKey"
+            onChange={(e) => setPriKey(e.target.value)}
+            value={priKey}
+          >
+            {priKey}
+          </textarea>
+          <label htmlFor="vigenere-cipher-text">Cipher Text</label>
+          <textarea
+            className="text-2"
             id="vigenere-cipher-text"
             onChange={(e) => setCipherText(e.target.value)}
             value={cipherText}
           >
             {cipherText}
           </textarea>
-          <label htmlFor="privateKey">Private Key</label>
-          <textarea className="text" id="privateKey" onChange={(e) => setPriKey(e.target.value)} value={priKey}>{priKey}</textarea>
+         
+          <button
+            className="btn-decrypt"
+            onClick={() => {
+              setPlainText(Decrypt(cipherText, priKey));
+            }}
+          >
+            Decrypt
+          </button>
         </div>
       </div>
     </div>

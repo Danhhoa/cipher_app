@@ -1,4 +1,5 @@
 import { useState } from "react";
+import IsEmpty from "../utils/IsEmpty";
 
 const Ceasar = () => {
   // Encrypts text using a shift od s
@@ -58,6 +59,8 @@ const Ceasar = () => {
   const [plainText, setPlainText] = useState("");
   const [cipherText, setCipherText] = useState("");
   const [shift, setShift] = useState(1);
+  const [showWarningEn, setShowWarningEn] = useState(false)
+  const [showWarningDe, setShowWarningDe] = useState(false)
 
   return (
     <div className="right-col">
@@ -72,6 +75,10 @@ const Ceasar = () => {
           >
             {plainText}
           </textarea>
+          {
+            showWarningEn ? <label className="warning-empty" >Hãy nhập dữ liệu cần mã hóa</label> : ""
+          }
+          
         </div>
 
         <div className="col-3">
@@ -103,14 +110,26 @@ const Ceasar = () => {
           <div className="btn-container">
             <button className="btn-encrypt"
               onClick={() => {
-                setCipherText(encrypt(plainText, shift));
+                if(IsEmpty(plainText)) {
+                  setShowWarningEn(true)
+                } else {
+                  setShowWarningEn(false)
+                  setCipherText(encrypt(plainText, shift));
+                }
+               
               }}
             >
               Encrypt
             </button>
             <button className="btn-decrypt"
               onClick={() => {
-                setPlainText(decrypt(cipherText, 26 - shift));
+                if (IsEmpty(cipherText)) {
+                  setShowWarningDe(true)
+                } else {
+                  setShowWarningDe(false)
+                  setPlainText(decrypt(cipherText, 26 - shift));
+                }
+                
               }}
             >
               Decrypt
@@ -128,6 +147,11 @@ const Ceasar = () => {
           >
             {cipherText}
           </textarea>
+          {
+            showWarningDe ? <label className="warning-empty" >Hãy nhập dữ liệu cần giải mã</label> : ""
+          }
+          
+
         </div>
       </div>
     </div>
