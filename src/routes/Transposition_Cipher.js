@@ -149,7 +149,7 @@ const Transposition = () => {
             <button
               className="btn-encrypt"
               onClick={() => {
-                //   IsEmpty(plainText) ? setShowWarningEn(true) :  setCipherText(encode(plainText, key))
+                  IsEmpty(plainText) ? setShowWarningEn(true) :  setCipherText(encode(plainText, key))
                if (IsEmpty(plainText)) {
                    setShowWarningEn(true)
                } else {
@@ -165,7 +165,7 @@ const Transposition = () => {
               className="btn-decrypt"
               onClick={() => 
                 {
-                //   IsEmpty(cipherText) ? setShowWarningDe(true) : setPlainText(decode(cipherText, key))
+                  IsEmpty(cipherText) ? setShowWarningDe(true) : setPlainText(decode(cipherText, key))
                 if (IsEmpty(cipherText)) {
                     setShowWarningDe(true)
                 } else {
